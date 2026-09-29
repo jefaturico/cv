@@ -8,7 +8,7 @@
   name: "Emilio Hurtado",
 
   // The small line above your name
-  headline: "Hydrographic & Geotechnical Survey",
+  headline: "Marine Sciences · Hydrography",
 
   // Shown in boxes under your name. Add or remove lines as you like;
   // emails and web addresses (www.… or https://…) become clickable.

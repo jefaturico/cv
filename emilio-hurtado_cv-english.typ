@@ -42,7 +42,7 @@
   (
     title: "Hackathon winner",
     body: [*Winning team* at the 2025 Efiaqua Hackathon in Valencia, out of
-      *255~participants*.],
+      *225~participants*.],
   ),
 )
 
@@ -130,16 +130,17 @@
   // ===== RIGHT COLUMN =====
   [
     #side-section("Education")[
-      #side-item("BSc Marine Sciences", sub: [Catholic University of Valencia (UCV)~·~Expected~2027])
+      #side-item("BSc in Marine Sciences", sub: [Catholic University of Valencia (UCV)~·~Expected~2027])
       #side-item("Minor in Blue Economy and Growth", sub: "EU-CONEXUS · Expected 2027")
       #side-item("Minor in Coastal Development and Sustainable Maritime Tourism", sub: "EU-CONEXUS · 2026")
+      #side-item("International Baccalaureate", sub: [SEK El Castillo, Madrid~·~2021 \ Class representative])
     ]
 
     #side-section("International mobilities")[
       #side-item("SETU, Ireland", sub: "Surf & Turf Physics hub · Oct 2026")
       #side-item("Klaipėda University, Lithuania", sub: "LNG in shipping · Oct 2026")
       #side-item("University of Rostock, Germany", sub: "IoT & digital twins, Power BI · May 2026")
-      #side-item("La Rochelle University, France", sub: "Startup project · Mar 2026")
+      #side-item("La Rochelle University, France", sub: "Entrepreneurship · Mar 2026")
       #side-item("UTCB, Romania", sub: "Pollution & remediation · Oct 2024")
     ]
 
@@ -149,8 +150,7 @@
     ]
 
     #side-section("Tools")[
-      #tags("CTD", "Side-scan sonar", "Niskin bottle", "Van Veen grab",
-        "QGIS", "ArcGIS", "Python", "NumPy", "pandas", "Matplotlib", "GSW", "Git", "Shell", "Linux/Unix")
+      #tags("QGIS", "ArcGIS", "Python", "Git", "Linux")
     ]
   ],
 )
