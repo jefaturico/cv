@@ -1,4 +1,4 @@
-# Resume
+# CV
 
 My CV and cover letter, written in [Typst](https://typst.app). I keep them on
 GitHub because it's the easiest way to have the current version on whatever
