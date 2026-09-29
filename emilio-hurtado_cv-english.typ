@@ -83,8 +83,8 @@
         title: "Sediment-Sampling Survey Design in the Weddell Sea",
         meta: "Desk study · UCV",
       )[
-        Selected a study area and designed a sediment-sampling grid in QGIS based
-        on geological and physical-oceanographic conditions.
+        - Selected a study area and designed a sediment-sampling grid in QGIS
+          based on geological and physical-oceanographic conditions.
       ]
 
       #entry(
@@ -92,8 +92,8 @@
         title: "Seafloor Geomorphology Mapping in the Alboran Sea",
         meta: "Desk study · UCV",
       )[
-        Mapped and interpreted subsea geological structures from public
-        bathymetric datasets in QGIS.
+        - Mapped and interpreted subsea geological structures from public
+          bathymetric datasets in QGIS.
       ]
 
       #entry(
@@ -101,9 +101,9 @@
         title: "GIS Site Selection for a Wastewater Treatment Plant",
         meta: "Desk study · UCV",
       )[
-        Overlaid exclusion layers in ArcGIS (protected land, roads, rivers,
-        livestock~routes, rail, towns, steep slopes) to identify a suitable
-        site.
+        - Overlaid exclusion layers in ArcGIS (protected land, roads, rivers,
+          livestock~routes, rail, towns, steep slopes) to identify a suitable
+          site.
       ]
     ]
 
@@ -113,9 +113,9 @@
         title: "Laboratory Intern",
         meta: "Ciclagua · EDAR Albufera Sur & EDAR Sueca-Perelló · Valencia, Spain",
       )[
-        Ran the lab's routine analyses (COD, BOD, suspended solids, nutrients)
-        on influent and effluent samples; results were used for plant process
-        control and regulatory reporting.
+        - Ran the lab's routine analyses (COD, BOD, suspended solids, nutrients)
+          on influent and effluent samples; results were used for plant process
+          control and regulatory reporting.
       ]
 
       #entry(
@@ -123,8 +123,8 @@
         title: "PADI Divemaster",
         meta: "Buceo La Herradura · Granada, Spain",
       )[
-        Led guided dives and refresher courses, gave dive and boat
-        safety~briefings, and ran equipment checks.
+        - Led guided dives and refresher courses, gave dive and boat
+          safety~briefings, and ran equipment checks.
       ]
     ]
   ],

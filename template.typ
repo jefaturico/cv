@@ -46,51 +46,100 @@
   // hue, derived in `_derive`; change the accent and everything follows.
   accent: rgb("#2b568b"),      // headings, markers; its dark shade is the header
   white: rgb("#ffffff"),       // page, name
-  // strokes
-  pill-stroke: 0.5pt,
-  line-stroke: 0.8pt,          // hairlines: timeline, card borders
   // fonts (bundled in fonts/)
   sans: "IBM Plex Sans",
   mono: "IBM Plex Mono",
   // IBM Plex registers some weights as separate families; map them here.
   sans-weights: (medium: "IBM Plex Sans Medm", semibold: "IBM Plex Sans SmBld"),
   mono-weights: (medium: "IBM Plex Mono Medm"),
-  // Type scale: a few fixed steps. Every text role is assigned one step in
-  // `_derive`.
+  bio-weight: "light",         // header bio; "regular" reads better on vivid backgrounds
+
+  // Units. Everything below that isn't tied to the paper is in `em`, and one
+  // em is `font-size`, the body text size. Change `font-size` and the type,
+  // spacing and markers all scale together; override any single key to tune
+  // it. (`_derive` turns these into absolute lengths.) Keys listed in
+  // `_own-em` are the exception: they are em of the text they apply to.
+  font-size: 8.5pt,
+  // Type scale: a few steps; every text role is assigned one in `_derive`.
   type-scale: (
-    xs: 7.5pt,     // mono dates
-    s: 8pt,        // secondary: meta lines, subtitles, tags, pills, headline
-    m: 8.5pt,      // body text, card text
-    l: 9pt,        // item titles: entries, cards, sidebar items, languages
-    xl: 9.5pt,     // header bio, sidebar headings, letter
-    xxl: 11pt,     // main section headings
-    display: 31pt, // name
+    xs: 0.882em,     // 7.5pt  mono dates
+    s: 0.941em,      // 8pt    secondary: meta lines, subtitles, tags, pills, headline
+    m: 1em,          // 8.5pt  body text, card text
+    l: 1.059em,      // 9pt    item titles: entries, cards, sidebar items, languages
+    xl: 1.118em,     // 9.5pt  header bio, sidebar headings, letter
+    xxl: 1.294em,    // 11pt   main section headings
+    display: 3.647em, // 31pt  name
   ),
-  // geometry
+
+  // Page geometry: tied to the paper, not the type.
   paper: "a4",
   margin-x: 40pt,
   margin-top: 34pt,
   margin-bottom: 26pt,
   header-height: 216pt,        // minimum header height; it grows to fit its content
-  header-pad: 28pt,            // minimum space above and below the header content
-  header-photo-gap: 35pt,      // text column ends this far left of the sidebar
   photo-dx: 0pt,               // photo's shift from the centre of its area (negative: left)
+  columns: 3,                  // the grid: highlight cards per row; the sidebar is the last column
+  // Hairlines stay hairlines at any type size.
+  pill-stroke: 0.5pt,
+  line-stroke: 0.8pt,          // timeline, card borders, tags
+
+  // Header
+  header-pad: 3.29em,          // minimum space above and below the header content
+  header-photo-gap: 4.12em,    // text column ends this far left of the sidebar
+  header-gap: 1.65em,          // equal vertical space between headline, name, bio and pills
   header-glow: 10%,            // soft light behind the photo: lightness added at its centre (0%: off)
   glow-radius: 71.8%,          // how far the glow reaches before it is the plain header colour, of the header height
-  header-gap: 14pt,            // equal vertical space between headline, name, bio and pills
-  bio-weight: "light",         // header bio; "regular" reads better on vivid backgrounds
-  pill-gap: 4.5pt,             // space between pills/tags, horizontally and vertically
-  card-gap: 11pt,
-  column-gap: 15pt,            // space between the main column and the sidebar
-  section-gap: 20pt,           // minimum space between main-column sections
-  entry-gap: 11pt,             // minimum space before each entry
-  side-section-gap: 20pt,      // minimum space between sidebar sections
-  card-inset: 11pt,            // padding on all four sides of a highlight card
-  cards-spacing: 18pt,         // space above and below the row of cards
-  date-width: 50pt,            // indent of entry content: date, gap, node, gap
-  node-size: 5pt,              // timeline node (whole points render crisply)
-  rail-gap: 6.25pt,            // space on each side of the node (date | node | title)
+  glow-centre: (0.46, 0.45),   // glow centre, as fractions of the photo's width and height (between chin and shoulders)
+  pill-gap: 0.53em,            // space between pills/tags, horizontally and vertically
+
+  // Layout
+  column-gap: 1.76em,          // space between the main column and the sidebar
+  card-gap: 1.29em,            // between highlight cards
+  card-inset: 1.29em,          // padding inside a highlight card; also the indent of section text
+  card-title-gap: 0.27em,      // card title → card text
+  cards-spacing: 2.12em,       // space above and below the row of cards
+  section-gap: 2.35em,         // minimum space between main-column sections
+  side-section-gap: 2.35em,    // minimum space between sidebar sections
+  entry-gap: 1.29em,           // minimum space before each entry
+  date-width: 5.88em,          // indent of entry content: date, gap, node, gap
+  node-size: 0.59em,           // timeline node (rounded to whole points, which render crisply)
+  rail-gap: 0.735em,           // space on each side of the node (date | node | title)
+  letter-heading-gap: 1.76em,  // letter subject → salutation
+
+  // Vertical rhythm. Gaps between stacked lines run from one baseline to the
+  // next cap top.
+  list-spacing: 1.1em,         // between bullet items
+  stack-gap: 0.975em,          // entry title → meta line → description
+  item-gap: 1.29em,            // heading → first item (sidebar, section note); between sidebar items
+  sub-gap: 0.81em,             // sidebar item title → its grey sub line
+  sub-item-extra: 0.2em,       // added below a sidebar item that ends in a sub line
+
+  // In em of their own text (see `_own-em`).
+  leading: 0.657em,            // line spacing of body text
+  long-leading: 0.75em,        // line spacing of running prose: header bio, letter
+  par-spacing: 0.8em,          // between paragraphs
+  letter-par-spacing: 1.15em,  // between paragraphs of the letter
+  closing-gap: 1.6em,          // letter body → closing
+  signature-gap: 0.8em,        // closing → signature
+  bullet-size: 0.313em,        // bullet square (rounded to whole points)
+  bullet-gap: 0.5em,           // bullet square → its text
+  heading-marker: 0.5625em,    // square before a main section heading
+  label-inset: 0.53em,         // padding inside pills and tags
+  icon-gap: 0.45em,            // contact icon → its text
+  headline-tracking: 0.12em,   // letter spacing of the headline above the name
+  name-tracking: -0.02em,      // letter spacing of the name
 )
+
+// Theme keys measured in em of their own text rather than of `font-size`.
+// `_derive` leaves them relative; everything else becomes absolute.
+#let _own-em = (
+  "leading", "long-leading", "par-spacing", "letter-par-spacing", "closing-gap",
+  "signature-gap", "bullet-size", "bullet-gap", "heading-marker", "label-inset",
+  "icon-gap", "headline-tracking", "name-tracking",
+)
+
+// A length with `em` measured against `size`: absolute.
+#let _resolve(v, size) = v.abs + v.em * size
 
 // A shade of `base`: same hue, OKLCH lightness `l`, and `ratio` times base's
 // chroma (colourfulness). Scaling the chroma keeps every shade in proportion to
@@ -113,7 +162,13 @@
 //   pill outline 3.8:1 · hairlines 1.9:1 on white (decorative)
 // Any role can be overridden through the theme (e.g. `ink: black`).
 #let _derive(t) = {
+  // em of `font-size` → absolute, except the keys in `_own-em`
+  let base = t.font-size
+  for (k, v) in t {
+    if type(v) == length and k not in _own-em { t.insert(k, _resolve(v, base)) }
+  }
   let z = t.type-scale
+  for (k, v) in z { z.insert(k, _resolve(v, base)) }
   t.sizes = (
     body: z.m, card-body: z.m, bio: z.xl,
     date: z.xs, meta: z.s, section-note: z.s, side-sub: z.s, tag: z.s, pill: z.s, headline: z.s,
@@ -193,16 +248,16 @@
 #let _card-columns(t, n, page-width) = {
   let inner = page-width - 2 * t.margin-x
   let w = calc.floor(((inner - (n - 1) * t.card-gap) / n).pt()) * 1pt
-  let xs = range(n).map(i => t.margin-x + i * (w + t.card-gap))
+  let xs = range(n).map(i => _whole(t.margin-x + i * (w + t.card-gap)))
   let last = _whole(t.margin-x + inner) - xs.at(-1)
   (xs, range(n).map(i => if i == n - 1 { last } else { w }))
 }
 
-// The main column and the sidebar, on the grid of three highlight cards: the
-// sidebar (and the header photo) starts where the last card starts, the main
-// column spans the other cards less the column gap.
+// The main column and the sidebar, on the grid of `columns` highlight cards:
+// the sidebar (and the header photo) starts where the last card starts, the
+// main column spans the other cards less the column gap.
 #let _body-columns(t, page-width) = {
-  let (xs, widths) = _card-columns(t, 3, page-width)
+  let (xs, widths) = _card-columns(t, t.columns, page-width)
   (main-width: xs.at(-1) - t.margin-x - t.column-gap, side-x: xs.at(-1), side-width: widths.at(-1))
 }
 
@@ -214,7 +269,7 @@
 #let _heading(t, size, title, marker: false) = {
   if not marker { return text(size: size, .._font(t, "semibold"), fill: t.accent, title) }
   let title-text(it) = text(size: size, .._font(t, "semibold"), fill: t.ink, it)
-  let m = _whole(0.5625 * size)
+  let m = _whole(_resolve(t.heading-marker, size))
   box(baseline: -(_cap(title-text) - m) / 2, _square(m, t.accent))
   h(t.card-inset - m)
   title-text(title)
@@ -242,11 +297,12 @@
     fill: t.white,
   )
   set text(font: t.sans, size: t.sizes.body, fill: t.ink, lang: lang)
-  set par(leading: 0.657em, spacing: 0.8em)
-  // square bullet about a third of an em, centred on the x-height
-  set list(indent: 1pt, body-indent: 6.5pt, spacing: 7.7pt, marker: context {
-    let m = _whole(0.313 * text.size)
-    box(baseline: -(0.35em - m / 2), _square(m, t.ink))
+  set par(leading: t.leading, spacing: t.par-spacing)
+  // square bullet about a third of an em, centred on the capitals like the
+  // section and timeline squares, flush with the text above it
+  set list(indent: 0pt, body-indent: t.bullet-gap, spacing: t.list-spacing, marker: context {
+    let m = _whole(_resolve(t.bullet-size, text.size))
+    box(baseline: -(_cap(text) - m) / 2, _square(m, t.accent))
   })
   theme-state.update(t)
   body
@@ -280,12 +336,12 @@
 )
 
 // A contact: plain text as for `_autolink`, or `(icon: "…", text: "…")` to
-// put one of `_icons` in front of it.
-#let _contact(it) = {
+// put one of `_icons` in front of it, `gap` before the text.
+#let _contact(it, gap) = {
   if type(it) != dictionary { return _autolink(it) }
   let (family, glyph) = _icons.at(it.icon)
   let icon = box(height: 0pt, text(font: family, glyph))
-  icon + h(0.45em) + _autolink(it.text)
+  icon + h(gap) + _autolink(it.text)
 }
 
 // Must be the first thing on the page: the band and photo bleed to the page
@@ -299,7 +355,7 @@
 ) = with-theme(t => {
   let pill(body) = {
     set text(size: t.sizes.pill, fill: t.header-ink)
-    _label(_contact(body), 0.53 * t.sizes.pill, t.pill-stroke + t.header-line)
+    _label(_contact(body, t.icon-gap), _resolve(t.label-inset, t.sizes.pill), t.pill-stroke + t.header-line)
   }
   let photo = if type(photo) == str { image(photo) } else { photo }
 
@@ -307,9 +363,9 @@
   let split-x = _body-columns(t, page.width).side-x
   let column-width = split-x - t.margin-x - t.header-photo-gap
   let headline-text = if headline != none {
-    text(size: t.sizes.headline, .._font(t, "medium", mono: true), fill: t.header-accent, tracking: 0.95pt, upper(headline))
+    text(size: t.sizes.headline, .._font(t, "medium", mono: true), fill: t.header-accent, tracking: t.headline-tracking, upper(headline))
   }
-  let name-text = text(size: t.sizes.name, .._font(t, "semibold"), fill: t.header-ink, tracking: -0.6pt, name)
+  let name-text = text(size: t.sizes.name, .._font(t, "semibold"), fill: t.header-ink, tracking: t.name-tracking, name)
   let pills = contacts.map(c => if c == linebreak() { c } else { pill(c) })
   let content = box(width: column-width, {
     set block(spacing: 0pt)
@@ -317,7 +373,7 @@
     if headline != none { block(below: t.header-gap, headline-text) }
     block(below: t.header-gap, name-text)
     if bio != none {
-      set par(leading: 0.74em, spacing: t.header-gap)
+      set par(leading: t.long-leading, spacing: t.header-gap)
       block(below: t.header-gap, text(size: t.sizes.bio, weight: t.bio-weight, fill: t.header-soft, bio))
     }
     _pill-flow(pills, t.pill-gap)
@@ -360,7 +416,8 @@
         (color.mix((lit, w), (t.header-bg, 100% - w), space: oklab), s * 100%)
       })
       // centred between the chin and the shoulders
-      let (cx, cy) = (x + 0.46 * width, 0.45 * height)
+      let (fx, fy) = t.glow-centre
+      let (cx, cy) = (x + fx * width, fy * height)
       bleed(box(width: page.width, height: height, clip: true,
         place(dx: cx - r, dy: cy - r,
           rect(width: 2 * r, height: 2 * r, fill: gradient.radial(..stops)))))
@@ -386,8 +443,7 @@
   let cards = cards.pos()
   let body(c, w) = block(width: w, inset: t.card-inset, {
     text(size: t.sizes.card-title, .._font(t, "semibold"), fill: t.accent, c.title)
-    v(2.3pt)
-    set par(leading: 0.66em)
+    v(t.card-title-gap)
     text(size: t.sizes.card-body, c.body)
   })
   block(above: t.cards-spacing, below: t.cards-spacing, {
@@ -452,7 +508,7 @@
   if not _first-in-column(<cv-section-end>) { _gap(t.section-gap) }
   block(above: 0pt, below: 0pt, _heading(t, t.sizes.section, title, marker: true))
   if note != none {
-    v(10.8pt)
+    v(t.item-gap)
     // aligned with the heading text, not the square
     block(above: 0pt, below: 0pt, pad(left: t.card-inset, text(size: t.sizes.section-note, style: "italic", fill: t.muted, note)))
   }
@@ -472,7 +528,7 @@
   let here-pos = here().position()
   let next = query(selector(<cv-entry>).after(here(), inclusive: false)).at(0, default: none)
   let end = query(selector(<cv-section-end>).after(here())).at(0, default: none)
-  let node = t.node-size
+  let node = _whole(t.node-size)
   // node corner, snapped to whole points (see `_square`); the rail runs
   // through the node's centre
   let nx = t.date-width - t.rail-gap - node
@@ -503,7 +559,7 @@
     let title-text(it) = text(size: t.sizes.entry-title, .._font(t, "semibold"), it)
     let date-text(it) = text(font: t.mono, size: t.sizes.date, fill: t.muted, it)
     let meta-text(it) = text(size: t.sizes.meta, fill: t.muted, it)
-    let meta-gap = 8.3pt // title baseline → meta cap top
+    let meta-gap = t.stack-gap
     // The node, the date and the title's first line share one centre line: half
     // the title's cap height. The date is shifted so its own cap centre lands there.
     let node-y = _cap(title-text) / 2
@@ -517,7 +573,7 @@
     _timeline(t, node-y)
     // date (right-aligned) | gap · node · gap | content — the node sits exactly
     // between the end of the date and the start of the title
-    let rail-width = t.node-size + 2 * t.rail-gap
+    let rail-width = _whole(t.node-size) + 2 * t.rail-gap
     grid(
       columns: (t.date-width - rail-width, rail-width, 1fr),
       align(right, pad(top: date-dy, if date != none { set par(leading: date-leading); date-text(date) })),
@@ -525,7 +581,7 @@
       {
         title-text(title)
         if meta != none { block(above: meta-gap, meta-text(meta)) }
-        if body != none { block(above: 8.2pt, body) }
+        if body != none { block(above: t.stack-gap, body) }
       },
     )
   })
@@ -537,31 +593,32 @@
 
 #let side-section(label, body) = with-theme(t => {
   if not _first-in-column(<cv-side-end>) { _gap(t.side-section-gap) }
-  block(above: 0pt, below: 11pt, _heading(t, t.sizes.side-heading, label))
+  block(above: 0pt, below: t.item-gap, _heading(t, t.sizes.side-heading, label))
   block(below: 0pt, body)
   [#metadata(none) <cv-side-end>]
 })
 
 // A sidebar item: semibold title, optional grey `sub` line below.
-#let side-item(title, sub: none) = with-theme(t => block(below: if sub == none { 10.9pt } else { 12.6pt }, {
+#let side-item(title, sub: none) = with-theme(t => block(below: if sub == none { t.item-gap } else { t.item-gap + t.sub-item-extra }, {
   text(size: t.sizes.side-title, .._font(t, "semibold"), title)
   if sub != none {
-    block(above: 6.9pt, text(size: t.sizes.side-sub, fill: t.muted, sub))
+    block(above: t.sub-gap, text(size: t.sizes.side-sub, fill: t.muted, sub))
   }
 }))
 
 // Square tags outlined with the hairline.
 #let tags(..items) = with-theme(t => {
-  let tag(it) = _label(it, 0.53 * t.sizes.tag, t.line-stroke + t.line)
+  let tag(it) = _label(it, _resolve(t.label-inset, t.sizes.tag), t.line-stroke + t.line)
   set text(size: t.sizes.tag)
   _pill-flow(items.pos().map(tag), t.pill-gap)
 })
 
-#let level-row(name, level: none) = with-theme(t => block(below: 10.9pt, grid(
-  columns: (1fr, auto),
-  text(size: t.sizes.side-title, .._font(t, "semibold"), name),
-  if level != none { text(size: t.sizes.side-title, fill: t.muted, level) },
-)))
+// The level is grey secondary text like a side-item's sub line, on the
+// name's baseline.
+#let level-row(name, level: none) = with-theme(t => block(below: t.item-gap, {
+  text(size: t.sizes.side-title, .._font(t, "semibold"), name)
+  if level != none { h(1fr); text(size: t.sizes.side-sub, fill: t.muted, level) }
+}))
 
 // ---------------------------------------------------------------------------
 // Palettes
@@ -614,25 +671,25 @@
     column-gutter: t.column-gap,
     _column({
       if subject != none {
-        block(above: 0pt, below: t.entry-gap + 4pt, _heading(t, t.sizes.section, subject, marker: true))
+        block(above: 0pt, below: t.letter-heading-gap, _heading(t, t.sizes.section, subject, marker: true))
       }
       // the text starts in line with the heading text, not the square
       pad(left: t.card-inset, {
         set text(size: t.sizes.letter)
-        set par(leading: 0.75em, spacing: 1.15em, justify: true)
+        set par(leading: t.long-leading, spacing: t.letter-par-spacing, justify: true)
         salutation
         parbreak()
         body
-        block(above: 1.6em, closing)
+        block(above: t.closing-gap, closing)
         if signature != none {
-          block(above: 0.8em, text(.._font(t, "semibold"), signature))
+          block(above: t.signature-gap, text(.._font(t, "semibold"), signature))
         }
       })
     }),
     {
       let side = _column({
         if recipient != none { side-section("To", recipient) }
-        side-section("Date", block(below: 10.9pt, text(size: t.sizes.side-title, {
+        side-section("Date", block(below: t.item-gap, text(size: t.sizes.side-title, {
           if place != none [#place, ]
           let date = if date == auto { datetime.today() } else { date }
           if type(date) == datetime { date.display("[day padding:none] [month repr:long] [year]") } else { date }
