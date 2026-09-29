@@ -17,11 +17,11 @@
 
 #show: cv.with(details, bio: [
   Only #hl[28.7%] of the seafloor has been mapped to modern standards, yet
-  everything we build at sea starts with understanding what's beneath it. I'm a
-  diver and Marine Sciences student with #hl[hands-on experience in coastal
-  survey, sampling, and GIS]. What I offer is simple: a hunger to learn, the
-  stamina for long days of work, and the belief that #hl[every project at sea
-  is only as good as~the~survey~behind~it].
+  everything we build at sea starts with understanding what's beneath it. I'm~a
+  diver and Marine Sciences student with #hl[field experience in coastal survey
+  and sampling, and data processing in Python and GIS]. I'm~set~on~hydrography
+  because I believe #hl[every project at sea is only as good
+  as~the~survey~behind~it].
 ])
 
 // ---------------------------------------------------------------------------
@@ -36,13 +36,13 @@
   ),
   (
     title: "Environmental background",
-    body: [I minored in *coastal~sustainability* and spent a summer testing
-      *treated~wastewater*.],
+    body: [I minored in *coastal~sustainability* and spent a summer running
+      a *wastewater~lab's* routine analyses.],
   ),
   (
     title: "Hackathon winner",
-    body: [*Winning team* at the 2025 Efiaqua Hackathon in Valencia, out of
-      *225~participants*.],
+    body: [Won the 2025 Efiaqua Hackathon in Valencia as a *2-person~team*,
+      out of *225~participants*.],
   ),
 )
 
@@ -69,11 +69,12 @@
         title: "Oceanographic Characterization of the Calpe Coast",
         meta: "Field campaign · UCV · Calpe, Spain",
       )[
-        - Planned and executed a multi-instrument coastal survey: CTD profiles, current
-          measurements, Niskin water sampling, and Van Veen grabs.
-        - Mapped _Posidonia oceanica_ meadows with side-scan sonar and integrated
-          results with chlorophyll time series and vegetation surveys.
-        - Processed and visualized datasets in Python (NumPy, pandas,
+        - Planned and executed a multi-instrument coastal survey; deployed CTD,
+          multiparameter probe, Niskin bottles and Van Veen grab.
+        - Designed side-scan sonar survey lines, acquired the data, and used the
+          imagery to document burial of _Posidonia oceanica_ meadows by sand.
+        - Responsible for the physical oceanography component: processed CTD,
+          sea-level, chlorophyll and turbidity data in Python (NumPy, pandas,
           Matplotlib, GSW) to assess Calpe's suitability as a smart coastal city.
       ]
 
@@ -101,7 +102,7 @@
         meta: "Desk study · UCV",
       )[
         Overlaid exclusion layers in ArcGIS (protected land, roads, rivers,
-        livestock routes, rail, towns, steep slopes) to identify a suitable
+        livestock~routes, rail, towns, steep slopes) to identify a suitable
         site.
       ]
     ]
@@ -112,8 +113,9 @@
         title: "Laboratory Intern",
         meta: "Ciclagua · EDAR Albufera Sur & EDAR Sueca-Perelló · Valencia, Spain",
       )[
-        Sampled influent and effluent water and analyzed its quality to support
-        treatment-process control and regulatory reporting.
+        Ran the lab's routine analyses (COD, BOD, suspended solids, nutrients)
+        on influent and effluent samples; results were used for plant process
+        control and regulatory reporting.
       ]
 
       #entry(
@@ -121,8 +123,8 @@
         title: "PADI Divemaster",
         meta: "Buceo La Herradura · Granada, Spain",
       )[
-        Led and supervised guided dives, conducting briefings, equipment checks,
-        and boat-based safety procedures.
+        Led guided dives and refresher courses, gave dive and boat
+        safety~briefings, and ran equipment checks.
       ]
     ]
   ],
@@ -137,7 +139,7 @@
     ]
 
     #side-section("International mobilities")[
-      #side-item("SETU, Ireland", sub: "Surf & Turf Physics hub · Oct 2026")
+      #side-item("SETU, Ireland", sub: "Surf & Turf Physics · Oct 2026")
       #side-item("Klaipėda University, Lithuania", sub: "LNG in shipping · Oct 2026")
       #side-item("University of Rostock, Germany", sub: "IoT & digital twins, Power BI · May 2026")
       #side-item("La Rochelle University, France", sub: "Entrepreneurship · Mar 2026")

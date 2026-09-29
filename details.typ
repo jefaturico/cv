@@ -11,10 +11,16 @@
   headline: "Marine Sciences · Hydrography",
 
   // Shown in boxes under your name. Add or remove lines as you like;
-  // emails and web addresses (www.… or https://…) become clickable.
+  // emails and web addresses (www.… or https://…) become clickable. Icons:
+  // "email", "phone", "location", "linkedin" or "github". Write linebreak(),
+  // to start a new row of boxes.
   contacts: (
-    "emilio@hurtadosanchez.com",
-    "+34 626 495 200",
+    (icon: "email", text: "emilio@hurtadosanchez.com"),
+    (icon: "phone", text: "+34 626 495 200"),
+    linebreak(),
+    (icon: "location", text: "Madrid, Spain"),
+    (icon: "linkedin", text: "https://linkedin.com/in/emiliohurtadosanchez"),
+    // (icon: "github", text: "https://github.com/jefaturico"),
   ),
 
   // A photo in this folder, ideally a cut-out on a transparent background

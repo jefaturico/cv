@@ -75,6 +75,8 @@
   header-pad: 28pt,            // minimum space above and below the header content
   header-photo-gap: 35pt,      // text column ends this far left of the sidebar
   photo-dx: 0pt,               // photo's shift from the centre of its area (negative: left)
+  header-glow: 10%,            // soft light behind the photo: lightness added at its centre (0%: off)
+  glow-radius: 71.8%,          // how far the glow reaches before it is the plain header colour, of the header height
   header-gap: 14pt,            // equal vertical space between headline, name, bio and pills
   bio-weight: "light",         // header bio; "regular" reads better on vivid backgrounds
   pill-gap: 4.5pt,             // space between pills/tags, horizontally and vertically
@@ -268,6 +270,24 @@
   it
 }
 
+// Font Awesome glyphs for contact icons (the fonts are in the fonts folder).
+#let _icons = (
+  email: ("Font Awesome 7 Free Solid", "\u{f0e0}"),
+  phone: ("Font Awesome 7 Free Solid", "\u{f095}"),
+  location: ("Font Awesome 7 Free Solid", "\u{f3c5}"),
+  linkedin: ("Font Awesome 7 Brands", "\u{f08c}"),
+  github: ("Font Awesome 7 Brands", "\u{f09b}"),
+)
+
+// A contact: plain text as for `_autolink`, or `(icon: "…", text: "…")` to
+// put one of `_icons` in front of it.
+#let _contact(it) = {
+  if type(it) != dictionary { return _autolink(it) }
+  let (family, glyph) = _icons.at(it.icon)
+  let icon = box(height: 0pt, text(font: family, glyph))
+  icon + h(0.45em) + _autolink(it.text)
+}
+
 // Must be the first thing on the page: the band and photo bleed to the page
 // edges by offsetting from the top-left corner of the content area.
 #let header(
@@ -275,11 +295,11 @@
   headline: none,
   name: "",
   bio: none,       // one or more paragraphs (separate them with a blank line)
-  contacts: (),    // text in outlined pills; emails and web addresses become links
+  contacts: (),    // outlined pills (see `_contact`), or linebreak() to start a new row
 ) = with-theme(t => {
   let pill(body) = {
     set text(size: t.sizes.pill, fill: t.header-ink)
-    _label(_autolink(body), 0.53 * t.sizes.pill, t.pill-stroke + t.header-line)
+    _label(_contact(body), 0.53 * t.sizes.pill, t.pill-stroke + t.header-line)
   }
   let photo = if type(photo) == str { image(photo) } else { photo }
 
@@ -290,7 +310,7 @@
     text(size: t.sizes.headline, .._font(t, "medium", mono: true), fill: t.header-accent, tracking: 0.95pt, upper(headline))
   }
   let name-text = text(size: t.sizes.name, .._font(t, "semibold"), fill: t.header-ink, tracking: -0.6pt, name)
-  let pills = contacts.map(pill)
+  let pills = contacts.map(c => if c == linebreak() { c } else { pill(c) })
   let content = box(width: column-width, {
     set block(spacing: 0pt)
     set par(spacing: 0pt)
@@ -325,6 +345,26 @@
     let natural = measure(photo)
     let width = natural.width * (height / natural.height)
     let x = text-edge + (page.width - text-edge - width) / 2 + t.photo-dx
+    // A soft pool of light behind the head and shoulders, like a lit studio
+    // backdrop. Its edge is exactly the header colour, so the square it is
+    // drawn in never shows; it fades out before the text column.
+    let glow = float(sys.inputs.at("header-glow", default: str(t.header-glow / 1%))) * 1%
+    if glow > 0% {
+      let (l, ..) = oklch(t.header-bg).components()
+      let lit = _shade(t.accent, l + glow, 0.8)
+      let r = t.glow-radius / 100% * height // scales with the photo, so it looks the same in the CV and the letter
+      // smooth falloff, (1 - s²)², sampled so the steps don't band
+      let stops = range(13).map(i => {
+        let s = i / 12
+        let w = calc.pow(1 - s * s, 2) * 100%
+        (color.mix((lit, w), (t.header-bg, 100% - w), space: oklab), s * 100%)
+      })
+      // centred between the chin and the shoulders
+      let (cx, cy) = (x + 0.46 * width, 0.45 * height)
+      bleed(box(width: page.width, height: height, clip: true,
+        place(dx: cx - r, dy: cy - r,
+          rect(width: 2 * r, height: 2 * r, fill: gradient.radial(..stops)))))
+    }
     bleed(place(dx: x, { set image(width: width, height: height); photo }))
   }
 
